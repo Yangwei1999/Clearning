@@ -7,6 +7,9 @@
 *.obj
 *.elf
 
+#C output
+OutPut/main.dSYM/
+
 # Linker output
 *.ilk
 *.map
