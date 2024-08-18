@@ -7,8 +7,11 @@
             "args": [
                 "-g",
                 "${file}",
+                "${fileDirname}/OutPut/Source/*.c",
                 "-o",
-                "${fileDirname}/OutPut/${fileBasenameNoExtension}"
+                "${fileDirname}/OutPut/${fileBasenameNoExtension}",
+                "-I",
+                "${fileDirname}/OutPut/Header"
             ],
             "options": {
                 "cwd": "${fileDirname}"
