@@ -7,14 +7,35 @@ int main()
 {
     printf("hello wordld\n");
     printf("this is vector genertato\n");
+    vector vec1;
+    GenertorVector(&vec1,2, sizeof(int));
+    int temp;
+    temp = 1;
+    VectorPrint(&vec1);
+    VectorPushback(&vec1,(void *)&temp);
+VectorPrint(&vec1);
+    temp = 2;
+    VectorPushback(&vec1,(void *)&temp);
+    VectorPrint(&vec1);
 
-    int a = 1,b = 2;
-    char c = 3,d = 4;
+    int *res;
 
-    swap(&a,&b,sizeof(a));
-    swap(&c,&d,sizeof(c));
+    res = (int *)GetIndex(&vec1,0);
 
-    printf("%d %d %d %d\n",a,b,c,d);
+    printf("res : %d\n",*res);
+
+    res = (int *)GetIndex(&vec1,1);
+
+    printf("res : %d\n",*res);
+
+    
+
+
+    temp = 3;
+    VectorPushback(&vec1,(void *)&temp);
+    VectorPrint(&vec1);
+
+    DestroyVector(&vec1);
 
 
     return 1;
