@@ -27,23 +27,55 @@ void DestroyVector(vector *this)
 
 void VectorPushback(vector *this,void *data)
 {
-    if(this->CurrentSize == this->Capacity)
-    {
-        //
-        this->Capacity = this->Capacity * 2;
-        void *TempBuff = this->data;
-        this->data = (void *)malloc(this->Capacity *this->ElementSize);
-        memcpy(TempBuff,this->data,this->Capacity * this ->ElementSize);
-        free(TempBuff);
-    }else{
-        memcpy((char *)this->data + this->CurrentSize*this->ElementSize,data,this->ElementSize);
-        this->CurrentSize++;
-    }
+    VectorInsertByIndex(this,this->CurrentSize,data);
+}
+void VectorPopBack(vector *this)
+{
+    VectorDeleteByIndex(this,this->CurrentSize-1);
 }
 
-void* GetIndex(vector *this,int index)
+// 获取第i个元素的地址
+void* VectorGetElementByIndex(vector *this,int index)
 {
-    return ((char *)this->data + index * this ->ElementSize);
+    if(index < this->Capacity)
+    {
+        return ((char *)this->data + index * this ->ElementSize);
+    }
+    return NULL;
+}
+
+void VectorExtendCapacity(vector *this)
+{
+    void *TempBuff = this->data;
+    this->data = (void *)malloc(this->Capacity *this->ElementSize * 2);
+    memcpy(TempBuff,this->data,this->Capacity * this ->ElementSize);
+    this->Capacity = 2 * this->Capacity;
+    free(TempBuff);
+}
+// 插入第i个元素
+
+void VectorInsertByIndex(vector *this, int index, void *data)
+{
+    if(index<0 || index >= this->Capacity ||this->CurrentSize == this->Capacity)
+    {
+        VectorExtendCapacity(this);
+    }
+
+    char *TempAddress = (char *) VectorGetElementByIndex(this,index);
+    memmove(TempAddress+this->ElementSize,TempAddress,(this->CurrentSize - index) * this->ElementSize);
+    memmove(TempAddress,data,this->ElementSize);
+    this->CurrentSize ++ ;
+}
+
+void VectorDeleteByIndex(vector *this, int index)
+{
+    if(index<0 || index >= this->Capacity || this->Capacity ==0)
+    {
+        return;
+    }
+    char *TempAddress = (char *) VectorGetElementByIndex(this,index);
+    memmove(TempAddress,TempAddress+this->ElementSize,(this->CurrentSize - index - 1) * this->ElementSize);
+    this->CurrentSize -- ;
 }
 
 void  swap(void *a,void *b,int Size_)
@@ -59,12 +91,13 @@ void  swap(void *a,void *b,int Size_)
    
 }
 
-void VectorPrint(vector *this)
+void VectorPrint(vector *this,int Size_)
 {
-    printf("Capacity: %d, CurrentNum:%d, NumSize:%d",this->Capacity,this->CurrentSize,this->ElementSize);
+    printf("Capacity: %d, CurrentNum:%d, NumSize:%d\n",this->Capacity,this->CurrentSize,this->ElementSize);
 
-    // for(int i = 0 ; i < this->CurrentSize;i++)
-    // {
-    //     printf("%d ",*((char*)this->data + i * this->ElementSize));
-    // }
+    for(int i = 0 ; i < this->CurrentSize;i++)
+    {
+        printf("%d ",*((char*)this->data + i * this->ElementSize));
+    }
+    printf("\n");
 }
