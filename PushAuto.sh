@@ -16,4 +16,4 @@ git push -u gitee main
 echo "正在推送更改到远程仓库github..."
 git push -u github main
 
-echo "推送已完成：$param1“
+echo "推送已完成：$param1"
