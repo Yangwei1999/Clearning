@@ -34,7 +34,6 @@ int main()
 
     printf("res : %d\n",*(int *)res);
 
-    
     temp = 3;
     VectorPushback(&vec1,(void *)&temp);
     VectorPrint(&vec1,sizeof(int));
@@ -43,12 +42,5 @@ int main()
     VectorPrint(&vec1,sizeof(int));
 
     DestroyVector(&vec1);
-
-    unsigned char a = -1;
-    char b = -1;
-
-    printf("a = %u ,b = %d\n",a,b);
-
-
     return 1;
 }

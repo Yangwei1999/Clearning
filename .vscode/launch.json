@@ -8,7 +8,7 @@
             "type": "lldb",
             "request": "launch",
             "name": "Debug",
-            "program": "${fileDirname}/OutPut/${fileBasenameNoExtension}",
+            "program": "${fileDirname}/Output/${fileBasenameNoExtension}",
             "args": [],
             "cwd": "${fileDirname}",
             "preLaunchTask": "C/C++: clang build active file"
