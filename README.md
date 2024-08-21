@@ -7,3 +7,6 @@ This is a repository about knowledge of C
 
 ### 2024-8-20 利用vector 实现 dfs 全排列
 [请查看文件夹](./2.Pertumation/)
+
+### 2024-8-21 利用vector 实现 dfs 组合问题，复习指针等策略
+[请查看文件夹](./2.DFS/)
